@@ -1,7 +1,6 @@
 
-# ============================================================
 # SECTION 1: OOP PRACTICAL — 2D COORDINATES & LINES
-# ============================================================
+
 # Features:
 #   - 2D Point create aur view karo
 #   - 2 points ke beech distance nikalo
@@ -53,7 +52,7 @@ class Line:
  
  
 # --- Demo ---
-print("=== 2D Geometry Demo ===")
+print("2D Geometry Demo")
  
 p1 = Point(1, 10)
 p2 = Point(4, 6)
@@ -68,13 +67,8 @@ print('Point on line check        :', l1.point_on_line(p1))
 print('Shortest distance (p1-line):', round(l1.shortest_distance(p1), 4))
 print()
  
- 
-# ============================================================
-# SECTION 2: HOW OBJECTS ACCESS ATTRIBUTES & METHODS
-# ============================================================
- 
+# SECTION 2: HOW OBJECTS ACCESS ATTRIBUTES & METHODS 
 class Person:
- 
     def __init__(self, name, country):
         self.name = name
         self.country = country
@@ -86,7 +80,7 @@ class Person:
             print('Hello,', self.name)
  
  
-print("=== Object Attribute & Method Access ===")
+print("Object Attribute & Method Access")
 p = Person('Ritesh', 'india')
 print('Name:', p.name)          # attribute access
 p.greet()                        # method access
@@ -96,10 +90,7 @@ p.gender = 'male'
 print('Gender (added outside):', p.gender)
 print()
  
- 
-# ============================================================
 # SECTION 3: REFERENCE VARIABLES
-# ============================================================
 # - Reference variable object ko hold karti hai
 # - Ek object ke multiple references ho sakte hain
 # - Naya reference banana = naya object NAHI banta
@@ -111,7 +102,7 @@ class PersonRef:
         self.gender = gender
  
  
-print("=== Reference Variables ===")
+print("Reference Variables")
 p = PersonRef('Nitish', 'male')
 q = p   # dono same object ko point kar rahe hain
  
@@ -123,10 +114,7 @@ q.name = 'Ankit'
 print('p.name after q.name change:', p.name)   # Ankit
 print()
  
- 
-# ============================================================
 # SECTION 4: PASS BY REFERENCE
-# ============================================================
 # Objects function mein reference se pass hote hain
 # Matlab function ke andar change karo toh bahar bhi dikhega
  
@@ -142,7 +130,7 @@ def greet_and_modify(person):
     person.name = 'Ankit'   # original object modify ho gaya
  
  
-print("=== Pass by Reference ===")
+print("Pass by Reference")
 p = PersonPass('Nitish', 'male')
 print('Before — p.name:', p.name)
 print('Before — id(p)  :', id(p))
@@ -150,10 +138,7 @@ greet_and_modify(p)
 print('After  — p.name:', p.name)   # Ankit (modified)
 print()
  
- 
-# ============================================================
 # SECTION 5: OBJECT MUTABILITY
-# ============================================================
 # Object mutable hote hain — function return karne par bhi same object rehta hai
  
 class PersonMut:
@@ -168,7 +153,7 @@ def modify(person):
     return person
  
  
-print("=== Object Mutability ===")
+print("Object Mutability")
 p = PersonMut('Nitish', 'male')
 p1 = modify(p)
 print('id(p) == id(p1):', id(p) == id(p1))   # True — same object
@@ -177,9 +162,7 @@ print('p1.name:', p1.name)
 print()
  
  
-# ============================================================
 # SECTION 6: ENCAPSULATION
-# ============================================================
 # Data aur methods ko ek saath wrap karna
 # Private attributes __ se banate hain — bahar directly access nahi hote
 # Getters aur Setters se controlled access dete hain
@@ -230,7 +213,7 @@ class Atm:
             print('Incorrect PIN.')
  
  
-print("=== Encapsulation — ATM Demo ===")
+print("Encapsulation — ATM Demo")
 atm = Atm()
 atm.create_pin('1234', 5000)
 atm.check_balance('1234')
@@ -240,10 +223,7 @@ print('Balance via getter:', atm.get_balance())
 atm.set_balance('abc')   # invalid input
 print()
  
- 
-# ============================================================
 # SECTION 7: COLLECTION OF OBJECTS
-# ============================================================
 # Objects ko list ya dict mein store kar sakte hain
  
 class PersonCol:
@@ -257,22 +237,19 @@ p1 = PersonCol('Nitish', 'male')
 p2 = PersonCol('Ankit', 'male')
 p3 = PersonCol('Ankita', 'female')
  
-print("=== Collection of Objects — List ===")
+print("Collection of Objects — List")
 person_list = [p1, p2, p3]
 for person in person_list:
     print(person.name, '-', person.gender)
 print()
  
-print("=== Collection of Objects — Dict ===")
+print("Collection of Objects — Dict")
 person_dict = {'p1': p1, 'p2': p2, 'p3': p3}
 for key in person_dict:
     print(key, '->', person_dict[key].name, '|', person_dict[key].gender)
 print()
  
- 
-# ============================================================
 # SECTION 8: STATIC VARIABLES & STATIC METHODS
-# ============================================================
 # Static (Class-level) Variables:
 #   - Class level par define hoti hain
 #   - ClassName.var se access hoti hain
@@ -300,7 +277,7 @@ class AtmStatic:
         return AtmStatic.__counter - 1
  
  
-print("=== Static Variables & Methods — ATM Counter ===")
+print("Static Variables & Methods — ATM Counter")
 atm1 = AtmStatic()
 atm2 = AtmStatic()
 atm3 = AtmStatic()
@@ -311,11 +288,7 @@ print('ATM 3 ID:', atm3.cid)
 print('Total ATMs created:', AtmStatic.get_counter())
 print()
  
- 
-# ============================================================
 # SECTION 9: STATIC VARIABLE — REAL WORLD EXAMPLE
-# ============================================================
- 
 class Lion:
  
     __water_source = 'Well in the Circus'   # shared static variable
@@ -332,7 +305,7 @@ class Lion:
         return Lion.__water_source
  
  
-print("=== Static Variable — Lion Example ===")
+print("Static Variable — Lion Example")
 simba = Lion('Simba', 'Male')
 mufasa = Lion('Mufasa', 'Male')
  
