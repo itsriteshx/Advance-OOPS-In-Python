@@ -23,13 +23,12 @@ print(L2)               # []
 print()
  
  
-# ============================================================
 # SECTION 2: len() vs .append() — FUNCTION vs METHOD
-# ============================================================
+
 # len(L)     -> function  -> class ke BAHAR define hai
 # L.append() -> method    -> class ke ANDAR define hai
  
-print("=== Function vs Method ===")
+print("Function vs Method")
 L = [1, 2, 3]
 print('len(L) — function :', len(L))
 L.append(4)
@@ -48,14 +47,11 @@ class Temp:
     def __init__(self):
         print('Temp object created! id:', id(self))
  
-print("=== Constructor Demo ===")
+print("Constructor Demo")
 obj = Temp()
 print()
- 
- 
-# ============================================================
+
 # SECTION 4: ATM CLASS — CONSTRUCTOR & METHODS
-# ============================================================
 # - __init__ ek special (magic) method hai — object bante hi call hota hai
 # - self -> current object ka reference
 # - Har object ka apna alag id hota hai
@@ -96,7 +92,7 @@ class Atm:
             print('Incorrect PIN.')
  
  
-print("=== ATM Class Demo ===")
+print("ATM Class Demo")
 obj1 = Atm()
 obj2 = Atm()
  
@@ -112,10 +108,7 @@ obj1.change_pin('1234', '5678')
 obj1.check_balance('5678')
 print()
  
- 
-# ============================================================
 # SECTION 5: FRACTION CLASS — OPERATOR OVERLOADING
-# ============================================================
 # __str__      -> print() karne par readable output
 # __add__      -> + operator override
 # __sub__      -> - operator override
@@ -175,15 +168,12 @@ print('fr1 * fr2 =', fr1 * fr2)   # 3/4 * 1/2 = 3/8
 print('fr1 / fr2 =', fr1 / fr2)   # 3/4 / 1/2 = 6/4
 print()
  
- 
-# ============================================================
 # SECTION 6: OPERATOR OVERLOADING — IMPORTANT NOTE
-# ============================================================
 # Har class ke liye + operator ka matlab alag ho sakta hai
 # Python decide karta hai ki kaunsa __add__ call karna hai
 # based on object type
  
-print("=== Operator Overloading — Different Types ===")
+print("Operator Overloading — Different Types")
 print('int    + :', 4 + 5)             # addition
 print('str    + :', 'hello' + 'world') # concatenation
 print('list   + :', [1,2,3] + [4,5])  # list merge
