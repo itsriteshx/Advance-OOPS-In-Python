@@ -437,6 +437,3 @@ print()
 # BankApp() directly banane ki koshish karo toh error aayega:
 # obj = BankApp()  -->  TypeError: Can't instantiate abstract class
 
-# ============================================================
-# END OF FILE
-# ============================================================
