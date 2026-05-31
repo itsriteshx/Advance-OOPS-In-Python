@@ -1,389 +1,203 @@
-### Write OOP classes to handle the following scenarios:
-class Point:
-  def __init__(self,x,y):
-    self.x_cod = x
-    self.y_cod = y
-  def __str__(self):
-    return '<{},{}>'.format(self.x_cod,self.y_cod)
-  def euclidean_distance(self,other):
-    return ((self.x_cod - other.x_cod)**2 + (self.y_cod - other.y_cod)**2)**0.5
-  def distance_from_origin(self):
-    return (self.x_cod**2 + self.y_cod**2)**0.5
-    # return self.euclidean_distance(Point(0,0))
 
-class Line:
-  def __init__(self,A,B,C):
-    self.A = A
-    self.B = B
-    self.C = C
+# SECTION 1: OBJECTS KI BASICS — BUILT-IN CLASSES
 
-  def __str__(self):
-    return '{}x + {}y + {} = 0'.format(self.A,self.B,self.C)
-
-  def point_on_line(line,point):
-    if line.A*point.x_cod + line.B*point.y_cod + line.C == 0:
-      return "lies on the line"
-    else:
-      return "does not lie on the line"
-
-  def shortest_distance(line,point):
-    return abs(line.A*point.x_cod + line.B*point.y_cod + line.C)/(line.A**2 + line.B**2)**0.5
-
-l1 = Line(1,1,-2)
-p1 = Point(1,10)
-print(l1)
-print(p1)
-
-l1.shortest_distance(p1)
-### How objects access attributes
-
-class Person:
-  def __init__(self,name_input,country_input):
-    self.name = name_input
-    self.country = country_input
-  def greet(self):
-    if self.country == 'india':
-      print('Namaste',self.name)
-    else:
-      print('Hello',self.name)
-
-# how to access attributes
-p = Person('nitish','india')
-p.name
-
-# how to access methods
-p.greet()
-# what if i try to access non-existent attributes
-p.gender
-
-### Attribute creation from outside of the class
-p.gender = 'male'
-p.gender
-
-### Reference Variables
-
-# object without a reference
-class Person:
-  def __init__(self):
-    self.name = 'nitish'
-    self.gender = 'male'
-
-p = Person()
-q = p
-
-# Multiple ref
-print(id(p))
-print(id(q))
-
-# change attribute value with the help of 2nd object
-
-print(p.name)
-print(q.name)
-q.name = 'ankit'
-print(q.name)
-print(p.name)
-
-### Pass by reference
-
-class Person:
-
-  def __init__(self,name,gender):
-    self.name = name
-    self.gender = gender
-
-# outside the class -> function
-def greet(person):
-  print('Hi my name is',person.name,'and I am a',person.gender)
-  p1 = Person('ankit','male')
-  return p1
-p = Person('nitish','male')
-x = greet(p)
-print(x.name)
-print(x.gender)
-
-class Person:
-
-  def __init__(self,name,gender):
-    self.name = name
-    self.gender = gender
-
-# outside the class -> function
-def greet(person):
-  print(id(person))
-  person.name = 'ankit'
-  print(person.name)
-
-p = Person('nitish','male')
-print(id(p))
-greet(p)
-print(p.name)
-
-### Object ki mutability
-
-class Person:
-
-  def __init__(self,name,gender):
-    self.name = name
-    self.gender = gender
-
-# outside the class -> function
-def greet(person):
-  person.name = 'ankit'
-  return person
-
-p = Person('nitish','male')
-print(id(p))
-p1 = greet(p)
-print(id(p1))
-
-### Encapsulation
-
-# instance var -> python tutor
-class Person:
-
-  def __init__(self,name_input,country_input):
-    self.name = name_input
-    self.country = country_input
-
-p1 = Person('nitish','india')
-p2 = Person('steve','australia')
-
-p2.name
-
+# Python mein sab kuch ek object hai
+# list, str, int — sab built-in classes ke objects hain
+ 
+print("=== Built-in Class Objects ===")
+ 
+L = [1, 2, 3]
+print(type(L))          # <class 'list'>
+ 
+s = str()               # empty string object
+print(repr(s))          # ''
+ 
+L2 = list()             # empty list object
+print(L2)               # []
+ 
+# Error examples (samajhne ke liye):
+# L.upper()      # ERROR — list ka upper() method nahi hota
+# s.append('x')  # ERROR — str ka append() method nahi hota
+# Har class ke apne specific methods hote hain
+ 
+print()
+ 
+ 
+# ============================================================
+# SECTION 2: len() vs .append() — FUNCTION vs METHOD
+# ============================================================
+# len(L)     -> function  -> class ke BAHAR define hai
+# L.append() -> method    -> class ke ANDAR define hai
+ 
+print("=== Function vs Method ===")
+L = [1, 2, 3]
+print('len(L) — function :', len(L))
+L.append(4)
+print('L.append(4) — method:', L)
+print()
+ 
+ 
+# ============================================================
+# SECTION 3: CLASS NAMING CONVENTION
+# ============================================================
+# Python mein class naam PascalCase mein hota hai
+# Examples: HelloWorld, BankAccount, SmartPhone, MyClass
+ 
+# Simple class — constructor demo
+class Temp:
+    def __init__(self):
+        print('Temp object created! id:', id(self))
+ 
+print("=== Constructor Demo ===")
+obj = Temp()
+print()
+ 
+ 
+# ============================================================
+# SECTION 4: ATM CLASS — CONSTRUCTOR & METHODS
+# ============================================================
+# - __init__ ek special (magic) method hai — object bante hi call hota hai
+# - self -> current object ka reference
+# - Har object ka apna alag id hota hai
+ 
 class Atm:
-
-  # constructor(special function)->superpower -> 
-  def __init__(self):
-    print(id(self))
-    self.pin = ''
-    self.__balance = 0
-    #self.menu()
-
-  def get_balance(self):
-    return self.__balance
-
-  def set_balance(self,new_value):
-    if type(new_value) == int:
-      self.__balance = new_value
-    else:
-      print('beta bahot maarenge')
-
-  def __menu(self):
-    user_input = input("""
-    Hi how can I help you?
-    1. Press 1 to create pin
-    2. Press 2 to change pin
-    3. Press 3 to check balance
-    4. Press 4 to withdraw
-    5. Anything else to exit
-    """)
-
-    if user_input == '1':
-      self.create_pin()
-    elif user_input == '2':
-      self.change_pin()
-    elif user_input == '3':
-      self.check_balance()
-    elif user_input == '4':
-      self.withdraw()
-    else:
-      exit()
-
-  def create_pin(self):
-    user_pin = input('enter your pin')
-    self.pin = user_pin
-
-    user_balance = int(input('enter balance'))
-    self.__balance = user_balance
-
-    print('pin created successfully')
-
-  def change_pin(self):
-    old_pin = input('enter old pin')
-
-    if old_pin == self.pin:
-      # let him change the pin
-      new_pin = input('enter new pin')
-      self.pin = new_pin
-      print('pin change successful')
-    else:
-      print('nai karne de sakta re baba')
-
-  def check_balance(self):
-    user_pin = input('enter your pin')
-    if user_pin == self.pin:
-      print('your balance is ',self.__balance)
-    else:
-      print('chal nikal yahan se')
-
-  def withdraw(self):
-    user_pin = input('enter the pin')
-    if user_pin == self.pin:
-      # allow to withdraw
-      amount = int(input('enter the amount'))
-      if amount <= self.__balance:
-        self.__balance = self.__balance - amount
-        print('withdrawl successful.balance is',self.__balance)
-      else:
-        print('abe garib')
-    else:
-      print('sale chor')
-
-obj = Atm()
-
-obj.get_balance()
-
-obj.set_balance(1000)
-
-obj.withdraw()
-
-### Collection of objects
-
-# list of objects
-class Person:
-
-  def __init__(self,name,gender):
-    self.name = name
-    self.gender = gender
-
-p1 = Person('nitish','male')
-p2 = Person('ankit','male')
-p3 = Person('ankita','female')
-
-L = [p1,p2,p3]
-
-for i in L:
-  print(i.name,i.gender)
-
-# dict of objects
-# list of objects
-class Person:
-
-  def __init__(self,name,gender):
-    self.name = name
-    self.gender = gender
-
-p1 = Person('nitish','male')
-p2 = Person('ankit','male')
-p3 = Person('ankita','female')
-
-d = {'p1':p1,'p2':p2,'p3':p3}
-
-for i in d:
-  print(d[i].gender)
-
-### Static Variables(Vs Instance variables)
-
-# need for static vars
-
-class Atm:
-
-  __counter = 1
-
-  # constructor(special function)->superpower -> 
-  def __init__(self):
-    print(id(self))
-    self.pin = ''
-    self.__balance = 0
-    self.cid = Atm.__counter
-    Atm.__counter = Atm.__counter + 1
-    #self.menu()
-
-  # utility functions
-  @staticmethod
-  def get_counter():
-    return Atm.__counter
-  def get_balance(self):
-    return self.__balance
-  def set_balance(self,new_value):
-    if type(new_value) == int:
-      self.__balance = new_value
-    else:
-      print('beta bahot maarenge')
-
-  def __menu(self):
-    user_input = input("""
-    Hi how can I help you?
-    1. Press 1 to create pin
-    2. Press 2 to change pin
-    3. Press 3 to check balance
-    4. Press 4 to withdraw
-    5. Anything else to exit
-    """)
-
-    if user_input == '1':
-      self.create_pin()
-    elif user_input == '2':
-      self.change_pin()
-    elif user_input == '3':
-      self.check_balance()
-    elif user_input == '4':
-      self.withdraw()
-    else:
-      exit()
-
-  def create_pin(self):
-    user_pin = input('enter your pin')
-    self.pin = user_pin
-
-    user_balance = int(input('enter balance'))
-    self.__balance = user_balance
-
-    print('pin created successfully')
-
-  def change_pin(self):
-    old_pin = input('enter old pin')
-
-    if old_pin == self.pin:
-      # let him change the pin
-      new_pin = input('enter new pin')
-      self.pin = new_pin
-      print('pin change successful')
-    else:
-      print('nai karne de sakta re baba')
-
-  def check_balance(self):
-    user_pin = input('enter your pin')
-    if user_pin == self.pin:
-      print('your balance is ',self.__balance)
-    else:
-      print('chal nikal yahan se')
-
-  def withdraw(self):
-    user_pin = input('enter the pin')
-    if user_pin == self.pin:
-      # allow to withdraw
-      amount = int(input('enter the amount'))
-      if amount <= self.__balance:
-        self.__balance = self.__balance - amount
-        print('withdrawl successful.balance is',self.__balance)
-      else:
-        print('abe garib')
-    else:
-      print('sale chor')
-
-c1 = Atm()
-Atm.get_counter()
-c3 = Atm()
-c3.cid
-
-Atm.counter
-### Static methods
-##### Points to remember about static
-class Lion:
-  __water_source="well in the circus"
-  def __init__(self,name, gender):
-      self.__name=name
-      self.__gender=gender
-
-  def drinks_water(self):
-      print(self.__name,
-      "drinks water from the",Lion.__water_source)
-
-  @staticmethod
-  def get_water_source():
-      return Lion.__water_source
-
-simba=Lion("Simba","Male")
-simba.drinks_water()
-print( "Water source of lions:",Lion.get_water_source())
+ 
+    def __init__(self):
+        print('ATM object created. id:', id(self))
+        self.pin = ''
+        self.balance = 0
+ 
+    def create_pin(self, pin, balance):
+        self.pin = pin
+        self.balance = balance
+        print('PIN created successfully.')
+ 
+    def change_pin(self, old_pin, new_pin):
+        if old_pin == self.pin:
+            self.pin = new_pin
+            print('PIN changed successfully.')
+        else:
+            print('Incorrect old PIN. Cannot change.')
+ 
+    def check_balance(self, pin):
+        if pin == self.pin:
+            print('Your balance is:', self.balance)
+        else:
+            print('Incorrect PIN.')
+ 
+    def withdraw(self, pin, amount):
+        if pin == self.pin:
+            if amount <= self.balance:
+                self.balance -= amount
+                print('Withdrawal successful. Remaining balance:', self.balance)
+            else:
+                print('Insufficient balance.')
+        else:
+            print('Incorrect PIN.')
+ 
+ 
+print("=== ATM Class Demo ===")
+obj1 = Atm()
+obj2 = Atm()
+ 
+# Dono alag objects hain — alag id
+print('obj1 id:', id(obj1))
+print('obj2 id:', id(obj2))
+print('Same object?', id(obj1) == id(obj2))   # False
+ 
+obj1.create_pin('1234', 5000)
+obj1.check_balance('1234')
+obj1.withdraw('1234', 1500)
+obj1.change_pin('1234', '5678')
+obj1.check_balance('5678')
+print()
+ 
+ 
+# ============================================================
+# SECTION 5: FRACTION CLASS — OPERATOR OVERLOADING
+# ============================================================
+# __str__      -> print() karne par readable output
+# __add__      -> + operator override
+# __sub__      -> - operator override
+# __mul__      -> * operator override
+# __truediv__  -> / operator override
+ 
+class Fraction:
+ 
+    def __init__(self, numerator, denominator):
+        self.num = numerator
+        self.den = denominator
+ 
+    def __str__(self):
+        """print() ke liye readable format"""
+        return '{}/{}'.format(self.num, self.den)
+ 
+    def __add__(self, other):
+        """fr1 + fr2"""
+        new_num = self.num * other.den + other.num * self.den
+        new_den = self.den * other.den
+        return Fraction(new_num, new_den)   # string nahi, object return karo
+ 
+    def __sub__(self, other):
+        """fr1 - fr2"""
+        new_num = self.num * other.den - other.num * self.den
+        new_den = self.den * other.den
+        return Fraction(new_num, new_den)
+ 
+    def __mul__(self, other):
+        """fr1 * fr2"""
+        new_num = self.num * other.num
+        new_den = self.den * other.den
+        return Fraction(new_num, new_den)
+ 
+    def __truediv__(self, other):
+        """fr1 / fr2"""
+        new_num = self.num * other.den
+        new_den = self.den * other.num
+        return Fraction(new_num, new_den)
+ 
+    def convert_to_decimal(self):
+        """Fraction ko decimal mein convert karo"""
+        return self.num / self.den
+ 
+ 
+print("=== Fraction Class — Operator Overloading ===")
+fr1 = Fraction(3, 4)
+fr2 = Fraction(1, 2)
+ 
+print('fr1 =', fr1)                              # 3/4
+print('fr2 =', fr2)                              # 1/2
+print('fr1 decimal =', fr1.convert_to_decimal()) # 0.75
+ 
+print('fr1 + fr2 =', fr1 + fr2)   # 3/4 + 1/2 = 10/8
+print('fr1 - fr2 =', fr1 - fr2)   # 3/4 - 1/2 = 2/8
+print('fr1 * fr2 =', fr1 * fr2)   # 3/4 * 1/2 = 3/8
+print('fr1 / fr2 =', fr1 / fr2)   # 3/4 / 1/2 = 6/4
+print()
+ 
+ 
+# ============================================================
+# SECTION 6: OPERATOR OVERLOADING — IMPORTANT NOTE
+# ============================================================
+# Har class ke liye + operator ka matlab alag ho sakta hai
+# Python decide karta hai ki kaunsa __add__ call karna hai
+# based on object type
+ 
+print("=== Operator Overloading — Different Types ===")
+print('int    + :', 4 + 5)             # addition
+print('str    + :', 'hello' + 'world') # concatenation
+print('list   + :', [1,2,3] + [4,5])  # list merge
+print('Frac   + :', fr1 + fr2)        # fraction addition
+ 
+# set + set nahi hota — sets ka + operator defined nahi hai
+# s1 = {1,2,3}
+# s2 = {3,4,5}
+# s1 + s2   # ERROR: TypeError: unsupported operand type(s) for +: 'set' and 'set'
+# Sets ke liye union use karo:
+s1 = {1, 2, 3}
+s2 = {3, 4, 5}
+print('set union (s1 | s2):', s1 | s2)      # {1, 2, 3, 4, 5}
+print('set union method   :', s1.union(s2)) # same result
+print()
+ 
+ 
