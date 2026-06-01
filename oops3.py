@@ -1,14 +1,12 @@
 
 # SECTION 1: CLASS RELATIONSHIPS
-# ============================================================
+
 # 1. Aggregation  (Has-A relationship)
 # 2. Inheritance  (Is-A relationship)
-
-# ------------------------------------------------------------
 # 1. AGGREGATION (Has-A Relationship)
-# ------------------------------------------------------------
-# Ek class doosri class ka object apne andar rakhti hai
 
+
+# Ek class doosri class ka object apne andar rakhti hai
 class Address:
 
     def __init__(self, city, pin, state):
@@ -54,15 +52,14 @@ cust.print_address()                                      # Mumbai 111111 Mahara
 print()
 
 
-# ============================================================
+
 # SECTION 2: INHERITANCE (Is-A Relationship)
-# ============================================================
+
 # Child class parent class ki properties aur methods inherit karti hai
 # Benefits: Code Reuse, Extensibility
 
-# ------------------------------------------------------------
 # 2a. Basic Inheritance Example
-# ------------------------------------------------------------
+
 
 class User:
     """Parent Class"""
@@ -93,13 +90,12 @@ s.enroll()    # child ka method
 print()
 
 
-# ------------------------------------------------------------
 # 2b. What Gets Inherited?
 #     - Constructor (agar child ka apna na ho)
 #     - Non-Private Attributes
 #     - Non-Private Methods
 #     - Private attributes DIRECTLY accessible NAHI hote
-# ------------------------------------------------------------
+
 
 class Phone:
 
@@ -128,7 +124,7 @@ class SmartPhone(Phone):
         # self.show_price() <-- Ye chalega (parent ka public method)
 
 
-print("=== Inheritance — What gets inherited ===")
+print("Inheritance — What gets inherited")
 s = SmartPhone(20000, 'Samsung', 12, 'Android', 8)
 s.buy()          # inherited
 s.show_price()   # inherited
@@ -136,10 +132,9 @@ s.specs()        # child ka apna
 print()
 
 
-# ------------------------------------------------------------
+
 # 2c. Method Overriding
 #     Child class parent ke method ko apne tarike se define kare
-# ------------------------------------------------------------
 
 class BasicPhone:
 
@@ -158,11 +153,8 @@ obj = AdvancedPhone()
 obj.buy()   # Child ka method chalega
 print()
 
-
-# ------------------------------------------------------------
 # 2d. super() Keyword
 #     Parent class ke methods aur constructor ko call karne ke liye
-# ------------------------------------------------------------
 
 class LandlinePhone:
 
@@ -189,14 +181,9 @@ c = CordlessPhone('Panasonic', 50)
 c.call()
 print()
 
-
-# ============================================================
 # SECTION 3: TYPES OF INHERITANCE
-# ============================================================
-
-# ------------------------------------------------------------
 # 3a. Single Inheritance  —  A -> B
-# ------------------------------------------------------------
+
 class Animal:
     def breathe(self):
         print('Breathing...')
@@ -210,10 +197,8 @@ Dog().breathe()
 Dog().bark()
 print()
 
-
-# ------------------------------------------------------------
 # 3b. Multilevel Inheritance  —  A -> B -> C
-# ------------------------------------------------------------
+
 class LivingBeing:
     def exist(self):
         print('I exist.')
@@ -226,17 +211,14 @@ class Human(Mammal):
     def think(self):
         print('I can think.')
 
-print("=== Multilevel Inheritance ===")
+print("Multilevel Inheritance")
 h = Human()
 h.exist()        # LivingBeing se
 h.warm_blood()   # Mammal se
 h.think()        # Human ka apna
 print()
 
-
-# ------------------------------------------------------------
 # 3c. Hierarchical Inheritance  —  A -> B, A -> C
-# ------------------------------------------------------------
 class Vehicle:
     def move(self):
         print('Vehicle is moving.')
@@ -249,15 +231,12 @@ class Bike(Vehicle):
     def ride(self):
         print('Riding a bike.')
 
-print("=== Hierarchical Inheritance ===")
+print("Hierarchical Inheritance")
 Car().move()
 Bike().move()
 print()
 
-
-# ------------------------------------------------------------
 # 3d. Multiple Inheritance  —  A, B -> C
-# ------------------------------------------------------------
 class Camera:
     def click_photo(self):
         print('Clicking photo.')
@@ -275,12 +254,9 @@ mp.click_photo()
 mp.navigate()
 print()
 
-
-# ------------------------------------------------------------
 # 3e. Diamond Problem & MRO (Method Resolution Order)
 #     Python MRO follow karta hai C3 Linearization algorithm
 #     MRO dekhne ke liye: ClassName.__mro__
-# ------------------------------------------------------------
 class A:
     def hello(self):
         print('Hello from A')
@@ -301,15 +277,10 @@ D().hello()                    # B ka chalega (MRO order: D -> B -> C -> A)
 print('MRO:', [cls.__name__ for cls in D.__mro__])
 print()
 
-
-# ============================================================
 # SECTION 4: POLYMORPHISM
-# ============================================================
 # Ek hi naam, alag alag behavior
-
-# ------------------------------------------------------------
 # 4a. Method Overriding (Runtime Polymorphism)
-# ------------------------------------------------------------
+
 class Shape:
     def area(self):
         return 0
@@ -329,22 +300,19 @@ class Rectangle(Shape):
     def area(self):
         return self.length * self.breadth
 
-print("=== Polymorphism — Method Overriding ===")
+print("Polymorphism — Method Overriding")
 shapes = [Circle(5), Rectangle(4, 6)]
 for shape in shapes:
     print(f'{shape.__class__.__name__} area: {shape.area()}')
 print()
 
-
-# ------------------------------------------------------------
 # 4b. Method Overloading (Default Arguments se simulate karte hain)
 #     Python natively support nahi karta, default params use karo
-# ------------------------------------------------------------
 class Calculator:
     def add(self, a, b=0, c=0):
         return a + b + c
 
-print("=== Polymorphism — Method Overloading (simulated) ===")
+print("Polymorphism — Method Overloading (simulated)")
 calc = Calculator()
 print(calc.add(5))
 print(calc.add(5, 10))
@@ -352,10 +320,8 @@ print(calc.add(5, 10, 15))
 print()
 
 
-# ------------------------------------------------------------
 # 4c. Operator Overloading
 #     __add__, __str__, __len__ jaisi dunder methods override karo
-# ------------------------------------------------------------
 class Vector:
     def __init__(self, x, y):
         self.x = x
@@ -374,9 +340,7 @@ print(v1 + v2)   # Vector(6, 8)
 print()
 
 
-# ============================================================
 # SECTION 5: ABSTRACTION
-# ============================================================
 # Implementation details chupaao, sirf interface dikhao
 # Abstract class directly instantiate NAHI ho sakti
 
@@ -420,7 +384,7 @@ class WebApp(BankApp):
         print('Displaying Web Banking Portal.')
 
 
-print("=== Abstraction Demo ===")
+print("Abstraction Demo")
 mob = MobileApp()
 mob.database()      # inherited concrete method
 mob.security()      # apna implementation
