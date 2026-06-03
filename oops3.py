@@ -83,7 +83,7 @@ class Student(User):
         print(f'{self.name} enrolled into the course. Roll No: {self.rollno}')
 
 
-print("=== Basic Inheritance Demo ===")
+print("Basic Inheritance Demo")
 s = Student('Ritesh', 'Male', 101)
 s.login()     # parent ka method
 s.enroll()    # child ka method
@@ -148,7 +148,7 @@ class AdvancedPhone(BasicPhone):
         print('Buying an Advanced SmartPhone.')
 
 
-print("=== Method Overriding ===")
+print("Method Overriding")
 obj = AdvancedPhone()
 obj.buy()   # Child ka method chalega
 print()
@@ -192,7 +192,7 @@ class Dog(Animal):
     def bark(self):
         print('Woof!')
 
-print("=== Single Inheritance ===")
+print("Single Inheritance")
 Dog().breathe()
 Dog().bark()
 print()
@@ -248,7 +248,7 @@ class GPS:
 class ModernPhone(Camera, GPS):
     pass
 
-print("=== Multiple Inheritance ===")
+print("Multiple Inheritance")
 mp = ModernPhone()
 mp.click_photo()
 mp.navigate()
@@ -272,7 +272,7 @@ class C(A):
 class D(B, C):   # Diamond shape
     pass
 
-print("=== Diamond Problem (MRO) ===")
+print("Diamond Problem (MRO)")
 D().hello()                    # B ka chalega (MRO order: D -> B -> C -> A)
 print('MRO:', [cls.__name__ for cls in D.__mro__])
 print()
@@ -333,7 +333,7 @@ class Vector:
     def __str__(self):          # print ke liye readable output
         return f'Vector({self.x}, {self.y})'
 
-print("=== Polymorphism — Operator Overloading ===")
+print("Polymorphism — Operator Overloading")
 v1 = Vector(2, 3)
 v2 = Vector(4, 5)
 print(v1 + v2)   # Vector(6, 8)
