@@ -50,8 +50,7 @@ class Line:
         return abs(self.A * point.x_cod + self.B * point.y_cod + self.C) / \
                (self.A**2 + self.B**2) ** 0.5
  
- 
-# --- Demo ---
+
 print("2D Geometry Demo")
  
 p1 = Point(1, 10)
