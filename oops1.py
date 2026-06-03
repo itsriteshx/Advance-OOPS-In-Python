@@ -4,7 +4,7 @@
 # Python mein sab kuch ek object hai
 # list, str, int — sab built-in classes ke objects hain
  
-print("=== Built-in Class Objects ===")
+print("Built-in Class Objects")
  
 L = [1, 2, 3]
 print(type(L))          # <class 'list'>
@@ -154,7 +154,7 @@ class Fraction:
         return self.num / self.den
  
  
-print("=== Fraction Class — Operator Overloading ===")
+print("Fraction Class — Operator Overloading")
 fr1 = Fraction(3, 4)
 fr2 = Fraction(1, 2)
  
