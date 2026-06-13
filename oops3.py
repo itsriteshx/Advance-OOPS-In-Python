@@ -387,7 +387,7 @@ class WebApp(BankApp):
 print("Abstraction Demo")
 mob = MobileApp()
 mob.database()      # inherited concrete method
-mob.security()      # apna implementation
+mob.security()      
 mob.display()
 mob.mobile_login()
 print()
